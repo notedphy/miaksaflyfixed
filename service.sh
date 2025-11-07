@@ -1,7 +1,7 @@
 #!/system/bin/sh
-# MikasaFlymeFix - FlymeOS GSI Fix Module untuk Itel S23+ UMS9230
+# MikasaFlymeFix - FlymeOS GSI Fix Module untuk Itel S23+ (S681LN) UMS9230
 # Author: anothernop
-# Version: 1.0
+# Version: 1.1
 
 MODDIR=${0%/*}
 
@@ -17,6 +17,21 @@ setprop persist.sys.usb.config adb,mtp
 setprop sys.usb.controller "musb-hdrc"
 setprop persist.vendor.usb.config mtp,adb
 chmod 666 /sys/class/usb_role/musb-hdrc.0.auto-usb/role 2>/dev/null
+
+# Fix NFC
+setprop persist.nfc.enabled 1
+setprop ro.nfc.port "I2C"
+setprop persist.vendor.nfc.config_path /system/etc/libnfc-nci.conf
+chmod 666 /dev/pn544 2>/dev/null
+chmod 666 /dev/nq-nci 2>/dev/null
+chown nfc:nfc /dev/pn544 2>/dev/null
+chown nfc:nfc /dev/nq-nci 2>/dev/null
+
+# Fix USB Headset
+setprop persist.audio.usb.enable 1
+setprop ro.audio.usb.period_us 16000
+setprop persist.vendor.audio.usb.enable 1
+chmod 666 /sys/class/switch/h2w/state 2>/dev/null
 
 # Fix Brightness
 chmod 666 /sys/class/backlight/*/brightness 2>/dev/null
@@ -57,6 +72,11 @@ setprop ro.surface_flinger.use_smart_90_for_video true
 setprop debug.sf.enable_hwc_vds 1
 setprop debug.sf.recomputecrop 0
 
+# Set Resolution 720p (1600x720)
+wm size 1600x720
+wm density 280
+setprop ro.sf.lcd_density 280
+
 # Disable thermal throttling yang aggressive
 setprop persist.sys.thermal.enable 0
 setprop vendor.sys.thermal.enable 0
@@ -82,7 +102,7 @@ chmod 666 /sys/class/touch/touch_dev/gesture_control 2>/dev/null
 chmod 666 /sys/class/touch/*/gesture_control 2>/dev/null
 
 # Log
-log -t MikasaFlymeFix "Module loaded successfully"
-echo "MikasaFlymeFix v1.0 loaded - $(date)" >> /data/local/tmp/mikasaflymefixed.log
+log -t MikasaFlymeFix "Module v1.1 loaded successfully"
+echo "MikasaFlymeFix v1.1 loaded - $(date)" >> /data/local/tmp/mikasaflymefixed.log
 
 exit 0

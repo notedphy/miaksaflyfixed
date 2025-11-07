@@ -1,0 +1,18 @@
+# Build Properties Override
+# Device: Itel S23+ (S681LN)
+
+# Device Identity
+ro.product.model=itels23plus
+ro.product.device=S681LN
+ro.product.name=S681LN
+ro.build.product=S681LN
+ro.product.brand=itel
+ro.product.manufacturer=ITEL
+
+# Display
+ro.sf.lcd_density=280
+persist.sys.lcd_density=280
+
+# NFC Support
+ro.hardware.nfc_nci=pn54x
+ro.nfc.port=I2C
