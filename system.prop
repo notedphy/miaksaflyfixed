@@ -1,0 +1,75 @@
+# MikasaFlymeFix System Properties
+# Author: anothernop
+
+# USB & OTG Fix
+persist.sys.usb.config=adb,mtp
+sys.usb.controller=musb-hdrc
+persist.vendor.usb.config=mtp,adb
+
+# Brightness Fix
+persist.sys.brightness.low.gamma=1
+ro.vendor.cabc.enable=false
+persist.vendor.max.brightness=255
+
+# Camera Fix
+persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.android.camera,com.flyme.camera
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.flyme.camera
+persist.camera.stats.test=5
+persist.vendor.camera.enableAdvanceFeatures=0x347
+persist.vendor.camera.enableNCS=1
+persist.vendor.camera.expose.aux=1
+
+# Unisoc UMS9230 Platform
+ro.vendor.platform.is.unisoc=1
+persist.vendor.radio.snapshot_enabled=0
+persist.vendor.radio.snapshot_timer=0
+
+# Display & GPU Fix 
+debug.sf.hw=1
+debug.egl.hw=1
+debug.composition.type=gpu
+debug.sf.disable_backpressure=1
+debug.sf.latch_unsignaled=1
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+ro.surface_flinger.use_smart_90_for_video=true
+debug.sf.enable_hwc_vds=1
+debug.sf.recomputecrop=0
+
+# Performance Optimization
+debug.performance.tuning=1
+ro.vendor.qti.sys.fw.bg_apps_limit=32
+persist.device_config.runtime_native.usap_pool_enabled=true
+dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6,7
+dalvik.vm.dex2oat-threads=8
+
+# Thermal Control
+persist.sys.thermal.enable=0
+vendor.sys.thermal.enable=0
+
+# Audio Fix
+persist.audio.fluence.speaker=true
+persist.audio.fluence.voicecall=true
+ro.audio.soundfx.dirac=false
+persist.audio.dirac.speaker=false
+
+# Network
+persist.data.df.dev_name=rmnet_usb0
+persist.rmnet.data.enable=true
+
+# Memory Management
+ro.config.fha_enable=true
+ro.sys.fw.bg_apps_limit=32
+ro.config.dha_cached_max=16
+ro.config.dha_empty_max=24
+
+# Scrolling & Touch
+windowsmgr.max_events_per_sec=150
+ro.min.fling_velocity=160
+ro.max.fling_velocity=20000
+ro.vendor.touchfeature.type=105
+
+# Misc
+ro.config.hw_quickpoweron=true
+persist.sys.purgeable_assets=1
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
